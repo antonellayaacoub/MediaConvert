@@ -1,0 +1,219 @@
+{
+  "Queue": "arn:aws:mediaconvert:eu-west-1:069447490726:queues/Default",
+  "UserMetadata": {},
+  "Role": "arn:aws:iam::069447490726:role/testMediaCovert",
+  "Settings": {
+    "TimecodeConfig": {
+      "Source": "ZEROBASED"
+    },
+    "OutputGroups": [
+      {
+        "CustomName": "MP4",
+        "Name": "File Group",
+        "Outputs": [
+          {
+            "ContainerSettings": {
+              "Container": "MP4",
+              "Mp4Settings": {
+                "CslgAtom": "INCLUDE",
+                "CttsVersion": 0,
+                "FreeSpaceBox": "EXCLUDE",
+                "MoovPlacement": "PROGRESSIVE_DOWNLOAD",
+                "AudioDuration": "DEFAULT_CODEC_DURATION"
+              }
+            },
+            "VideoDescription": {
+              "ScalingBehavior": "DEFAULT",
+              "TimecodeInsertion": "DISABLED",
+              "AntiAlias": "ENABLED",
+              "Sharpness": 50,
+              "CodecSettings": {
+                "Codec": "H_264",
+                "H264Settings": {
+                  "InterlaceMode": "PROGRESSIVE",
+                  "ScanTypeConversionMode": "INTERLACED",
+                  "NumberReferenceFrames": 3,
+                  "Syntax": "DEFAULT",
+                  "Softness": 0,
+                  "GopClosedCadence": 1,
+                  "GopSize": 90,
+                  "Slices": 1,
+                  "GopBReference": "DISABLED",
+                  "SlowPal": "DISABLED",
+                  "EntropyEncoding": "CABAC",
+                  "Bitrate": 2200000,
+                  "FramerateControl": "INITIALIZE_FROM_SOURCE",
+                  "RateControlMode": "CBR",
+                  "CodecProfile": "MAIN",
+                  "Telecine": "NONE",
+                  "MinIInterval": 0,
+                  "AdaptiveQuantization": "AUTO",
+                  "CodecLevel": "AUTO",
+                  "FieldEncoding": "PAFF",
+                  "SceneChangeDetect": "ENABLED",
+                  "QualityTuningLevel": "SINGLE_PASS",
+                  "FramerateConversionAlgorithm": "DUPLICATE_DROP",
+                  "UnregisteredSeiTimecode": "DISABLED",
+                  "GopSizeUnits": "FRAMES",
+                  "ParControl": "INITIALIZE_FROM_SOURCE",
+                  "NumberBFramesBetweenReferenceFrames": 2,
+                  "RepeatPps": "DISABLED",
+                  "DynamicSubGop": "STATIC"
+                }
+              },
+              "AfdSignaling": "NONE",
+              "DropFrameTimecode": "ENABLED",
+              "RespondToAfd": "NONE",
+              "ColorMetadata": "INSERT"
+            },
+            "AudioDescriptions": [
+              {
+                "AudioTypeControl": "FOLLOW_INPUT",
+                "AudioSourceName": "Audio Selector 1",
+                "CodecSettings": {
+                  "Codec": "AAC",
+                  "AacSettings": {
+                    "AudioDescriptionBroadcasterMix": "NORMAL",
+                    "Bitrate": 96000,
+                    "RateControlMode": "CBR",
+                    "CodecProfile": "LC",
+                    "CodingMode": "CODING_MODE_2_0",
+                    "RawFormat": "NONE",
+                    "SampleRate": 48000,
+                    "Specification": "MPEG4"
+                  }
+                },
+                "LanguageCodeControl": "FOLLOW_INPUT"
+              }
+            ]
+          }
+        ],
+        "OutputGroupSettings": {
+          "Type": "FILE_GROUP_SETTINGS",
+          "FileGroupSettings": {
+            "Destination": "s3://outputtestcoverter/"
+          }
+        }
+      },
+      {
+        "CustomName": "WEBM",
+        "Name": "File Group",
+        "Outputs": [
+          {
+            "ContainerSettings": {
+              "Container": "WEBM"
+            },
+            "VideoDescription": {
+              "ScalingBehavior": "DEFAULT",
+              "TimecodeInsertion": "DISABLED",
+              "AntiAlias": "ENABLED",
+              "Sharpness": 50,
+              "CodecSettings": {
+                "Codec": "VP8",
+                "Vp8Settings": {
+                  "QualityTuningLevel": "MULTI_PASS",
+                  "RateControlMode": "VBR",
+                  "GopSize": 90,
+                  "Bitrate": 2400000,
+                  "FramerateControl": "INITIALIZE_FROM_SOURCE",
+                  "FramerateConversionAlgorithm": "DUPLICATE_DROP",
+                  "ParControl": "INITIALIZE_FROM_SOURCE"
+                }
+              },
+              "DropFrameTimecode": "ENABLED",
+              "ColorMetadata": "INSERT"
+            },
+            "AudioDescriptions": [
+              {
+                "AudioTypeControl": "FOLLOW_INPUT",
+                "CodecSettings": {
+                  "Codec": "OPUS",
+                  "OpusSettings": {
+                    "Bitrate": 96000,
+                    "Channels": 2,
+                    "SampleRate": 48000
+                  }
+                },
+                "LanguageCodeControl": "FOLLOW_INPUT"
+              }
+            ]
+          }
+        ],
+        "OutputGroupSettings": {
+          "Type": "FILE_GROUP_SETTINGS",
+          "FileGroupSettings": {
+            "Destination": "s3://outputtestcoverter/"
+          }
+        }
+      },
+      {
+        "CustomName": "Thumbnails",
+        "Name": "File Group",
+        "Outputs": [
+          {
+            "ContainerSettings": {
+              "Container": "RAW"
+            },
+            "VideoDescription": {
+              "ScalingBehavior": "DEFAULT",
+              "TimecodeInsertion": "DISABLED",
+              "AntiAlias": "ENABLED",
+              "Sharpness": 50,
+              "CodecSettings": {
+                "Codec": "FRAME_CAPTURE",
+                "FrameCaptureSettings": {
+                  "FramerateNumerator": 1,
+                  "FramerateDenominator": 5,
+                  "MaxCaptures": 2,
+                  "Quality": 80
+                }
+              },
+              "DropFrameTimecode": "ENABLED",
+              "ColorMetadata": "INSERT"
+            }
+          }
+        ],
+        "OutputGroupSettings": {
+          "Type": "FILE_GROUP_SETTINGS",
+          "FileGroupSettings": {
+            "Destination": "s3://outputtestcoverter/"
+          }
+        }
+      }
+    ],
+    "AdAvailOffset": 0,
+    "Inputs": [
+      {
+        "VideoSelector": {
+          "ColorSpace": "FOLLOW",
+          "Rotate": "DEGREE_0",
+          "AlphaBehavior": "DISCARD"
+        },
+        "FilterEnable": "AUTO",
+        "PsiControl": "USE_PSI",
+        "FilterStrength": 0,
+        "DeblockFilter": "DISABLED",
+        "DenoiseFilter": "DISABLED",
+        "InputScanType": "AUTO",
+        "TimecodeSource": "ZEROBASED",
+        "ImageInserter": {
+          "InsertableImages": []
+        },
+        "FileInput": "s3://inputtestcoverter/videos/6dhL1ozMIlCxns18XXeyviUXgU654AQuRK8aTwIG.mp4",
+        "AudioSelectors": {
+          "Audio Selector 1": {
+            "Offset": 0,
+            "DefaultSelection": "DEFAULT",
+            "ProgramSelection": 1
+          }
+        }
+      }
+    ]
+  },
+  "AccelerationSettings": {
+    "Mode": "DISABLED"
+  },
+  "StatusUpdateInterval": "SECONDS_10",
+  "Priority": 0
+}
+
