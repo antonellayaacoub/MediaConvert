@@ -17,8 +17,8 @@ class VideoController extends Controller
 
     public function create()
     {
-        //return view('videos.create');
-        return view('videos.canvas');
+        return view('videos.create');
+       
     }
     
     
